@@ -6,6 +6,7 @@ The goal is to create latest News Feed app, where this app fetchs data from Curr
 * RecyclerView
 * CardView
 * Retrofit2
+* ViewBinding
 * Coroutines
 * APIs
 * Glide
