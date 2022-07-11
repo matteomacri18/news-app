@@ -5,7 +5,7 @@ The goal is to create latest News Feed app, where this app fetchs data from Curr
 ### Features
 * RecyclerView
 * CardView
-* Retofit2
+* Retrofit2
 * Coroutines
 * APIs
 * Glide
