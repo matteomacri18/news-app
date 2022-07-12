@@ -12,5 +12,5 @@ The goal is to create latest News Feed app, where this app fetchs data from Curr
 * Glide
 
 ### Demo
-<img src='https://j.gifs.com/MZ2n0Q.gif' title='Video Walkthrough' width='450px' height='500px' alt='Video Walkthrough' />
+<img src='https://j.gifs.com/MZ2n0Q.gif' title='Video Walkthrough' alt='Video Walkthrough' />
 
