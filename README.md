@@ -1,6 +1,6 @@
 # News-app
 ### Project Overview
-The goal is to create latest News Feed app, where this app fetchs data from Current News API and it displays the data into a Recyclerview within a CardView, using Coroutines and Retrofit2. </br>
+The goal is to create latest News Feed app, where this app fetchs data from Current News API and it displays the data into a CardView within of a RecyclerView, using Coroutines and Retrofit2. </br>
 
 ### Features
 * RecyclerView
