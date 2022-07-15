@@ -12,9 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.matteomacri.news.adapters.NewsAdapter
+import com.matteomacri.news.api.NewsInterface
 import com.matteomacri.news.clients.RetrofitClient
 import com.matteomacri.news.databinding.ActivityMainBinding
 import com.matteomacri.news.models.New
+import com.matteomacri.news.models.News
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +24,8 @@ import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 private const val TAG = "MainActivity"
+private var language = "it"
+private var checkedItem = 0
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,36 +44,45 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.app_bar_menu, menu)
-//        return true
-//    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_bar_menu, menu)
+        return true
+    }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.miLanguage -> createDialog()
-//        }
-//        return true
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.miLanguage -> createDialog()
+        }
+        return true
+    }
 
-//    private fun createDialog() {
-//        var selected: String
-//        val languages = arrayOf("it", "us")
-//        val languageDialog = AlertDialog.Builder(this)
-//            .setTitle("Choose language")
-//            .setSingleChoiceItems(languages, 0) { dialogInterface, i ->
-//                selected = languages[i]
-//                Constants.language = selected
-//            }.setPositiveButton("Accept") { _, _ -> }
-//            .setNegativeButton("Cancel") { _, _ -> }
-//            .create()
-//            .show()
-//    }
+    private fun createDialog() {
+        var selected: String
+        val languages = arrayOf("it", "en")
+        AlertDialog.Builder(this)
+            .setTitle("Choose language")
+            .setSingleChoiceItems(languages, checkedItem) { dialogInterface, i ->
+                selected = languages[i]
+                language = selected
+                checkedItem = i
+            }.setPositiveButton("Accept") { _, _ ->
+                newsList.clear()
+                fetchNews(binding)
+            }
+            .create()
+            .show()
+    }
 
     private fun fetchNews(binding: ActivityMainBinding) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.getRetrofitClient().getNews()
+                val response: News
+                if(language.equals("it")){
+                    response = RetrofitClient.getRetrofitClient().getNewsIta()
+                }else{
+                    response = RetrofitClient.getRetrofitClient().getNewsEn()
+                }
+
                 for (new in response.news) {
                     Log.i(TAG, new.toString())
                     addToList(new)
