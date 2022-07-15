@@ -3,8 +3,6 @@ package com.matteomacri.news.api
 import com.matteomacri.news.Constants
 import com.matteomacri.news.models.News
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 
 interface NewsInterface {
