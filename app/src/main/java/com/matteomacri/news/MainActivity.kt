@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         fetchNews(binding)
+        binding.sfLayout.setOnRefreshListener {
+            fetchNews(binding)
+            binding.sfLayout.isRefreshing = false
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
