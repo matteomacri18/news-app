@@ -5,6 +5,7 @@ The goal is to create latest News Feed app, where this app fetchs data from Curr
 ### Features
 * RecyclerView
 * CardView
+* Dialogs
 * Toolbar
 * Retrofit2
 * ViewBinding
